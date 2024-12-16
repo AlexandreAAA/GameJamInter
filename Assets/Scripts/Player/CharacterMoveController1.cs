@@ -111,15 +111,10 @@ public class CharacterMoveController1 : MonoBehaviour
         { currentSpeed = 0f; }
         else { currentSpeed = speed; }
 
-        float currentHorizontalSpeed = new Vector3(playerRigidbody.linearVelocity.x, 0.0f, playerRigidbody.linearVelocity.z).magnitude;
-        float speedOffset = 0.1f;
-        float inputMagnitude = input.analogMovement ? input.move.magnitude : 1f;
-
         targetVector.x = input.move.x;
-       targetVector.y = playerRigidbody.linearVelocity.y;
         targetVector.z = input.move.y;
         targetVector = targetVector.normalized;
-        moveVector = targetVector * currentSpeed * Time.deltaTime;
+        moveVector = new Vector3(targetVector.x * currentSpeed * Time.deltaTime, targetVector.y, targetVector.z *currentSpeed * Time.deltaTime) ;
     }
 
     public void CalculateMoveRotation()
